@@ -30,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
   # a route for admins to make other users an admin or agent
   def update
     if @user.admin?
-      user = User.find(params[:id])
+      user = User.find_by_email(params[:email])
       user.update(user_params)
       render json: {
         message: 'Successfully made user an admin.',
@@ -46,6 +46,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:role, :id)
+    params.permit(:role, :email)
   end
 end
