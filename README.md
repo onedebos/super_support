@@ -7,3 +7,7 @@
 ## Endpoints
 
 ## Notes
+
+## improvements
+
+- Social Auth
