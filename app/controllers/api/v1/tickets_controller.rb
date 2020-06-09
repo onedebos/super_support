@@ -24,12 +24,14 @@ class Api::V1::TicketsController < ApplicationController
   end
 
   def show
-    render json: {ticket: @ticket}
+    comments = @ticket.comments.all
+    render json: {ticket: @ticket, comments: comments}
   end
 
   def update
     @ticket.update(ticket_params)
-    render json: {ticket: @ticket}
+    comments = @ticket.comments.all
+    render json: {ticket: @ticket, comments: comments}
   end
   
   def destroy
@@ -39,7 +41,7 @@ class Api::V1::TicketsController < ApplicationController
 
   private
     def ticket_params
-        params.permit(:completed, :user_id, :comment_id, :title)
+        params.permit(:status, :id, :ticket, :title)
     end
   
     def set_ticket
