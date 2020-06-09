@@ -2,4 +2,3 @@ language: ruby
 script:
   - bundle exec rails db:migrate
   - bundle exec rspec
-  - rails s
