@@ -30,7 +30,7 @@ class Api::V1::TicketsController < ApplicationController
 
   private
     def ticket_params
-        params.permit(:completed, :user_id, :comment_id)
+        params.permit(:completed, :user_id, :comment_id, :title)
     end
   
     def set_ticket
