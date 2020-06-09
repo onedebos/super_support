@@ -6,6 +6,7 @@ class Api::V1::AuthenticationController < ApplicationController
     if user
       secret = Rails.application.secrets.secret_key_base[0]
       payload = {
+        user_id: user.id,
         name: user.name,
         email: user.email,
         role: user.role
