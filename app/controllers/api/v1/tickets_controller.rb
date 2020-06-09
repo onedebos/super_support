@@ -11,13 +11,9 @@ class Api::V1::TicketsController < ApplicationController
     if !@user
         render status: 401
     else
-      if params[:completed] == nil
-        completed = false
-      end
       ticket = Ticket.create!(
           user_id: @user.id, 
-          title: params[:title], 
-          completed: completed 
+          title: params[:title]
           )
       if ticket
         render json: {ticket: ticket } 

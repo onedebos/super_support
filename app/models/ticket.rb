@@ -6,7 +6,7 @@ class Ticket < ApplicationRecord
 
   after_initialize do
       if self.new_record?
-        self.role ||= :opened
+        self.status ||= :opened
       end
     end
 end

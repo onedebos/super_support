@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_133929) do
+ActiveRecord::Schema.define(version: 2020_06_09_134815) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
@@ -22,12 +22,10 @@ ActiveRecord::Schema.define(version: 2020_06_09_133929) do
 
   create_table "tickets", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "comment_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "title"
     t.integer "status"
-    t.index ["comment_id"], name: "index_tickets_on_comment_id"
     t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
@@ -41,6 +39,5 @@ ActiveRecord::Schema.define(version: 2020_06_09_133929) do
   end
 
   add_foreign_key "comments", "tickets"
-  add_foreign_key "tickets", "comments"
   add_foreign_key "tickets", "users"
 end
