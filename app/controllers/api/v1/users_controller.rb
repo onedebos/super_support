@@ -34,7 +34,8 @@ class Api::V1::UsersController < ApplicationController
       user.update(user_params)
       render json: {
         message: 'Successfully made user an admin.',
-        user: user
+        user_email: user.email,
+        user_role: user.role
       }
     else
       render json: { error: 'You are not authorized to perform that action. ' },
