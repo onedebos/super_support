@@ -20,6 +20,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'rspec-rails'
 
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -33,6 +34,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'simplecov', require: false
+  gem 'codecov', :require => false
 end
 
 group :development do
