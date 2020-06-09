@@ -26,7 +26,7 @@ RSpec.describe 'Users', type: :request do
       headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' }
       post '/api/v1/users', params: params.to_json, headers: headers
       user1 = JSON.parse(response.body)
-      # create another user
+      # create a second user
       params = { name: 'test_user', email: 'test2@test.com', password: 'password', password_confirmation: 'password' }
       headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' }
       post '/api/v1/users', params: params.to_json, headers: headers
@@ -50,6 +50,24 @@ RSpec.describe 'Users', type: :request do
 
       expect(response).to have_http_status(200)
       expect(response.body).to include('Successfully made user an admin.')
+    end
+
+    it 'shows all registered users' do
+      # create a user
+      params = { name: 'test_user', email: 'test@test.com', password: 'password', password_confirmation: 'password' }
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      post '/api/v1/users', params: params.to_json, headers: headers
+      user1 = JSON.parse(response.body)
+      # create a second user
+      params = { name: 'test_user', email: 'test2@test.com', password: 'password', password_confirmation: 'password' }
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      post '/api/v1/users', params: params.to_json, headers: headers
+      user2 = JSON.parse(response.body)
+
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      get '/api/v1/users'
+
+      expect(response).to have_http_status(200)
     end
   end
 end

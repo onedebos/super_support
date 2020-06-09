@@ -3,6 +3,13 @@
 class Api::V1::UsersController < ApplicationController
   before_action :authenticate, only: [:update]
 
+  def index
+    users = User.all.order(created_at: :desc)
+    render json: {
+      users: users
+    }
+  end
+
   def create
     user = User.create!(
       email: params[:email],
@@ -30,7 +37,7 @@ class Api::V1::UsersController < ApplicationController
   # a route for admins to make other users an admin or agent
   def update
     if @user.admin?
-      user = User.find_by_email(params[:email])
+      user = User.find(params[:id])
       user.update(user_params)
       render json: {
         message: 'Successfully made user an admin.',
@@ -46,6 +53,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:role, :email)
+    params.permit(:role, :id)
   end
 end
