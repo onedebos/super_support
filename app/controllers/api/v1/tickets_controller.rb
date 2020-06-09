@@ -1,6 +1,6 @@
 class Api::V1::TicketsController < ApplicationController
     before_action :set_ticket, only: [:show, :update, :destroy]
-    before_action :set_user
+    before_action :set_user, only: [:create, :update, :destroy]
   def index
     tickets = Ticket.all.order(created_at: :desc)
     render json: tickets
