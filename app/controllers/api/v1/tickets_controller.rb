@@ -1,6 +1,6 @@
 class Api::V1::TicketsController < ApplicationController
     before_action :set_ticket, only: [:show, :update, :destroy]
-    before_action :set_user, only: [:create, :update, :destroy]
+    before_action :authenticate, only: [:create, :update, :destroy]
 
   def index
     tickets = Ticket.all.order(created_at: :desc)
@@ -35,8 +35,12 @@ class Api::V1::TicketsController < ApplicationController
   end
   
   def destroy
-    @ticket.destroy
-    head :no_content
+    if @user.admin?
+      @ticket.destroy
+      head :no_content
+    else
+      render json: {error: "You are not authorized to perform that action. "}
+    end
   end
 
   private
@@ -46,19 +50,6 @@ class Api::V1::TicketsController < ApplicationController
   
     def set_ticket
         @ticket = Ticket.find(params[:id])
-    end
-
-    def set_user
-      authorization_header = request.headers[:authorization]
-      if !authorization_header
-        render json: {error: "not authorized"}, status: 401
-      else
-        authorization_header = request.headers[:authorization]
-        token = authorization_header.split(' ')[1]
-        secret = Rails.application.secrets.secret_key_base[0]
-        decoded_token = JWT.decode(token, secret)
-        @user = User.find(decoded_token[0]["user_id"])
-      end
     end
 
 end

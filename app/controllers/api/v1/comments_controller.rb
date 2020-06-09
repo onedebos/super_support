@@ -1,6 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
     before_action :set_ticket
-    before_action :set_user
+    before_action :authenticate
 
     def create
       comment = Comment.create!(
@@ -22,6 +22,7 @@ class Api::V1::CommentsController < ApplicationController
       end
     end
 
+
 private
 
     def comment_params
@@ -30,19 +31,6 @@ private
 
     def set_ticket
         @ticket = Ticket.find(params[:ticket_id])
-    end
-
-    def set_user
-        authorization_header = request.headers[:authorization]
-        if !authorization_header
-          render json: {error: "not authorized"}, status: 401
-        else
-          authorization_header = request.headers[:authorization]
-          token = authorization_header.split(' ')[1]
-          secret = Rails.application.secrets.secret_key_base[0]
-          decoded_token = JWT.decode(token, secret)
-          @user = User.find(decoded_token[0]["user_id"])
-        end
     end
 
 end
