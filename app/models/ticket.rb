@@ -1,13 +1,13 @@
+# frozen_string_literal: true
+
 class Ticket < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   validates_presence_of :title
 
-  enum status: [:opened, :in_progress, :completed]
+  enum status: %i[opened in_progress completed]
 
   after_initialize do
-      if self.new_record?
-        self.status ||= :opened
-      end
-    end
+    self.status ||= :opened if new_record?
+  end
 end
