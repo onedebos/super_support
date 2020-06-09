@@ -1,6 +1,7 @@
 class Ticket < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
+  validates_presence_of :title
 
   enum status: [:opened, :in_progress, :completed]
 
