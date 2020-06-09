@@ -6,6 +6,13 @@ class Api::V1::TicketsController < ApplicationController
   end
 
   def create
+    authorization_header = request.headers[:authorization]
+    if !authorization_header
+        render status: 401
+    else
+      token = authorization_header.split(' ')[1]
+    end
+    
     ticket = Ticket.create!(ticket_params)
     if ticket
         render json: {ticket: ticket } 
