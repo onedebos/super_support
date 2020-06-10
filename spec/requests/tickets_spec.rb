@@ -10,7 +10,7 @@ RSpec.describe 'Users', type: :request do
       user = JSON.parse(response.body)
 
       # create a ticket
-      ticket_params = { user_id: user['user']['user_id'], title: 'test ticket' }
+      ticket_params = { user_id: user['user']['user_id'], title: 'test ticket', request: 'test request' }
       headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user['token']}" }
       post '/api/v1/tickets', params: ticket_params.to_json, headers: headers
       ticket = JSON.parse(response.body)
@@ -25,12 +25,12 @@ RSpec.describe 'Users', type: :request do
       user = JSON.parse(response.body)
 
       # create a ticket
-      ticket_params = { user_id: user['user']['user_id'], title: 'test ticket' }
+      ticket_params = { user_id: user['user']['user_id'], title: 'test ticket', request: 'test request' }
       headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user['token']}" }
       post '/api/v1/tickets', params: ticket_params.to_json, headers: headers
 
       # create another ticket
-      ticket_params = { user_id: user['user']['user_id'], title: 'test ticket' }
+      ticket_params = { user_id: user['user']['user_id'], title: 'test ticket', request: 'test request' }
       headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user['token']}" }
       post '/api/v1/tickets', params: ticket_params.to_json, headers: headers
       ticket = JSON.parse(response.body)
@@ -51,7 +51,7 @@ RSpec.describe 'Users', type: :request do
       user = JSON.parse(response.body)
 
       # create a ticket
-      ticket_params = { user_id: user['user']['user_id'], title: 'test ticket' }
+      ticket_params = { user_id: user['user']['user_id'], title: 'test ticket', request: 'test request' }
       headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user['token']}" }
       post '/api/v1/tickets', params: ticket_params.to_json, headers: headers
       tickets = JSON.parse(response.body)
@@ -88,7 +88,7 @@ RSpec.describe 'Users', type: :request do
       super_user = JSON.parse(response.body)
 
       # create a ticket
-      ticket_params = { user_id: user.id, title: 'test ticket' }
+      ticket_params = { user_id: user.id, title: 'test ticket', request: 'test request' }
 
       headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{super_user['token']}" }
       post '/api/v1/tickets', params: ticket_params.to_json, headers: headers
@@ -108,7 +108,7 @@ RSpec.describe 'Users', type: :request do
         user = JSON.parse(response.body)
 
         # create a ticket
-        ticket_params = { user_id: user['user']['user_id'], title: 'test ticket' }
+        ticket_params = { user_id: user['user']['user_id'], title: 'test ticket', request: 'test request' }
         headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' }
         post '/api/v1/tickets', params: ticket_params.to_json, headers: headers
         tickets = JSON.parse(response.body)

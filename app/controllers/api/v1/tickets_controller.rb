@@ -15,7 +15,8 @@ class Api::V1::TicketsController < ApplicationController
     else
       ticket = Ticket.create!(
         user_id: @user.id,
-        title: params[:title]
+        title: params[:title],
+        request: params[:request]
       )
       if ticket
         render json: { ticket: ticket }
@@ -48,7 +49,7 @@ class Api::V1::TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.permit(:status, :id, :ticket, :title)
+    params.permit(:status, :id, :ticket, :title, :request)
   end
 
   def set_ticket
