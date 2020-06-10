@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe '#when created user is valid' do
+  describe '# when created user is valid' do
     let(:user) { User.create(name: 'test_user', email: 'test@test.com', password: 'password', password_confirmation: 'password') }
     it 'checks for the presence of values in required fields' do
       expect(user.name).to eq('test_user')
@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'when created user is not valid' do
+  describe '# when created user is not valid' do
     it 'does not create a user if name is missing' do
       user2 = User.new(name: '', email: 'test@test.com', password: 'password', password_confirmation: 'password')
       expect(user2).to_not be_valid

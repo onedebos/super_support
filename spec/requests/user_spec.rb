@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  describe 'successful signups' do
+  describe '# successful signups' do
     params = { name: 'test_user', email: 'test@test.com', password: 'password', password_confirmation: 'password' }
     headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' }
     it 'signs up a user and send back a response if the inputs are valid' do
@@ -45,7 +45,8 @@ RSpec.describe 'Users', type: :request do
       # make user2 an admin
       admin_params = { role: 'admin' }
       headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user1['token']}" }
-      put '/api/v1/users/2', params: admin_params.to_json, headers: headers
+
+      put "/api/v1/users/#{user2['user']['user_id']}", params: admin_params.to_json, headers: headers
       admin_response = JSON.parse(response.body)
 
       expect(response).to have_http_status(200)
