@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :comments
+  has_many :tickets
 
   enum role: %i[customer agent admin]
 
