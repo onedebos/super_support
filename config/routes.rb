@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :tickets do
         resources :comments, only: %i[create update]
       end
+      get 'verifyuser', to: 'users#user_with_token'
     end
   end
 end
