@@ -11,3 +11,8 @@
 ## improvements
 
 - Social Auth
+
+## Setting up DB
+
+- Make sure you have mysql installed on your local system.
+- Edit the config/database.yml file to use the root MySQL user on your system and enter the password.
