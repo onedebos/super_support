@@ -14,7 +14,7 @@
       <img src="./assets/0.12.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2020-06-11T16:32:43+01:00">2020-06-11T16:32:43+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2020-06-11T17:01:32+01:00">2020-06-11T17:01:32+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -844,7 +844,7 @@
 
             
 
-            <code class="ruby">      # user_role: @user.role,</code>
+            <code class="ruby">      user_role: @user.role,</code>
           </li>
         </div>
       
@@ -2512,7 +2512,7 @@
 
             
 
-            <code class="ruby">      tickets = @user.tickets</code>
+            <code class="ruby">      tickets = @user.tickets.order(created_at: :desc)</code>
           </li>
         </div>
       
