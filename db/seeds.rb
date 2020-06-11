@@ -1,4 +1,4 @@
-
+# frozen_string_literal: true
 
 users = [
 
@@ -49,121 +49,119 @@ users = [
 ]
 
 tickets = [
-{
+  {
     id: 35,
     user_id: 30,
-    title: "I have a problem with the app",
-    status: "opened",
-    request: "I have had a problem with the app for 4 days now can you help?"    
-},
+    title: 'I have a problem with the app',
+    status: 'opened',
+    request: 'I have had a problem with the app for 4 days now can you help?'
+  },
 
-{
+  {
     id: 36,
     user_id: 30,
-    title: "I have a problem with the app",
-    status: "opened",
-    request: "I have had a problem with the app for 4 days now can you help?"    
-},
+    title: 'I have a problem with the app',
+    status: 'opened',
+    request: 'I have had a problem with the app for 4 days now can you help?'
+  },
 
-{
+  {
     id: 37,
     user_id: 30,
-    title: "I have a problem with the app",
-    status: "in_progress",
-    request: "I have had a problem with the app for 4 days now can you help?"    
-},
-{
+    title: 'I have a problem with the app',
+    status: 'in_progress',
+    request: 'I have had a problem with the app for 4 days now can you help?'
+  },
+  {
     id: 38,
     user_id: 30,
-    title: "I have a problem with the app",
-    status: "completed",
-    request: "I have had a problem with the app for 4 days now can you help?"    
-},
-{
+    title: 'I have a problem with the app',
+    status: 'completed',
+    request: 'I have had a problem with the app for 4 days now can you help?'
+  },
+  {
     id: 39,
     user_id: 31,
-    title: "I bought a brand new phone and it stopped working",
-    status: "opened",
-    request: "I have had a problem with the app for 4 days now can you help?"    
-},
-{
+    title: 'I bought a brand new phone and it stopped working',
+    status: 'opened',
+    request: 'I have had a problem with the app for 4 days now can you help?'
+  },
+  {
     id: 40,
     user_id: 31,
-    title: "I bought a brand new phone and it stopped working",
-    status: "completed",
-    request: "I have had a problem with the app for 4 days now can you help?"    
-},
-{
+    title: 'I bought a brand new phone and it stopped working',
+    status: 'completed',
+    request: 'I have had a problem with the app for 4 days now can you help?'
+  },
+  {
     id: 41,
     user_id: 31,
-    title: "I bought a brand new phone and it stopped working",
-    status: "in_progress",
-    request: "I have had a problem with the app for 4 days now can you help?"    
-},
-{
+    title: 'I bought a brand new phone and it stopped working',
+    status: 'in_progress',
+    request: 'I have had a problem with the app for 4 days now can you help?'
+  },
+  {
     id: 42,
     user_id: 31,
-    title: "I bought a brand new phone and it stopped working",
-    status: "completed",
-    request: "I have had a problem with the app for 4 days now can you help?"    
-}
+    title: 'I bought a brand new phone and it stopped working',
+    status: 'completed',
+    request: 'I have had a problem with the app for 4 days now can you help?'
+  }
 
 ]
 
 comments = [
-{
-    id:43,
-    comment: "Admin comment",
-    user_name: "Eddidiong",
+  {
+    id: 43,
+    comment: 'Admin comment',
+    user_name: 'Eddidiong',
     ticket_id: 35,
     user_id: 34,
-    user_role: "agent"
-},
-{
-    id:44,
-    comment: "customer comment",
-    user_name: "Bimbo",
+    user_role: 'agent'
+  },
+  {
+    id: 44,
+    comment: 'customer comment',
+    user_name: 'Bimbo',
     ticket_id: 35,
     user_id: 30,
-    user_role: "customer"
-},
-{
-    id:45,
-    comment: "agent comment",
-    user_name: "Eddidiong",
+    user_role: 'customer'
+  },
+  {
+    id: 45,
+    comment: 'agent comment',
+    user_name: 'Eddidiong',
     ticket_id: 35,
     user_id: 34,
-    user_role: "agent"
-},
+    user_role: 'agent'
+  },
 
-{
-    id:46,
-    comment: "Agent comment",
-    user_name: "Shola",
+  {
+    id: 46,
+    comment: 'Agent comment',
+    user_name: 'Shola',
     ticket_id: 39,
     user_id: 33,
-    user_role: "agent"
-},
-{
-    id:47,
-    comment: "customer comment",
-    user_name: "Dami",
+    user_role: 'agent'
+  },
+  {
+    id: 47,
+    comment: 'customer comment',
+    user_name: 'Dami',
     ticket_id: 39,
     user_id: 31,
-    user_role: "customer"
-},
-{
-    id:48,
-    comment: "customer comment",
-    user_name: "Shola",
+    user_role: 'customer'
+  },
+  {
+    id: 48,
+    comment: 'customer comment',
+    user_name: 'Shola',
     ticket_id: 39,
     user_id: 33,
-    user_role: "agent"
-}
-
+    user_role: 'agent'
+  }
 
 ]
-
 
 # users.each do |user|
 #     User.create!(
@@ -177,7 +175,6 @@ comments = [
 #     )
 # end
 
-
 # tickets.each do |ticket|
 #     Ticket.create!(
 #         id: ticket[:id],
@@ -189,16 +186,12 @@ comments = [
 # end
 
 comments.each do |comment|
-    Comment.create!(
-        id: comment[:id],
-        user_id: comment[:user_id],
-        comment: comment[:comment],
-        user_name: comment[:user_name],
-        ticket_id: comment[:ticket_id],
-        user_role: comment[:user_role]
-    )
+  Comment.create!(
+    id: comment[:id],
+    user_id: comment[:user_id],
+    comment: comment[:comment],
+    user_name: comment[:user_name],
+    ticket_id: comment[:ticket_id],
+    user_role: comment[:user_role]
+  )
 end
-
-
-
-
