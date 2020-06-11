@@ -24,6 +24,12 @@ To get a local copy up and running follow these simple example steps.
 bundle install
 ```
 
+- Create and migrate the DB
+
+```
+rails db:create db:migrate
+```
+
 - run the rails server
 
 ```
@@ -43,6 +49,8 @@ rails s
 
 - Improve test coverage to at least 97%
 - Implement social-auth for faster sign-ups and sign-in
+- Dockerize application
+- Deploy using AWS Elastic Beanstalk
 
 ### Endpoints
 
