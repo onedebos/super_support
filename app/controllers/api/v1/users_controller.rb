@@ -52,7 +52,13 @@ class Api::V1::UsersController < ApplicationController
 
   def user_with_token
     if @user
-      render json: { user: @user }
+      payload = {
+        user_id: @user.id,
+        name: @user.name,
+        email: @user.email,
+        role: @user.role
+      }
+      render json: { token: @token, user: payload }
     else
       render json: { error: 'token expired or invalid.' }
     end

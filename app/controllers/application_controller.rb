@@ -7,10 +7,9 @@ class ApplicationController < ActionController::API
       render json: { error: 'not authorized' }, status: 401
     else
       authorization_header = request.headers[:authorization]
-      token = authorization_header.split(' ')[1]
+      @token = authorization_header.split(' ')[1]
       secret = Rails.application.secrets.secret_key_base[0]
-      decoded_token = JWT.decode(token, secret)
-
+      decoded_token = JWT.decode(@token, secret)
       @user = User.find(decoded_token[0]['user_id'])
 
     end
