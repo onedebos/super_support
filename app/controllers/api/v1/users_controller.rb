@@ -60,7 +60,7 @@ class Api::V1::UsersController < ApplicationController
 
   def user_tickets
     if @user
-      tickets = @user.tickets.order(created_at: :desc)
+      tickets = @user.tickets
       render json: { tickets: tickets, user_id: @user.id }
     else
       render json: { error: 'invalid token' }
