@@ -123,7 +123,7 @@ RSpec.describe 'Users', type: :request do
       headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user1['token']}" }
       get '/api/v1/verifyuser', headers: headers
       user = JSON.parse(response.body)
-      
+
       expect(user['user']['user_id']).to eq(user1['user']['user_id'])
     end
   end

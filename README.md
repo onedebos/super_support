@@ -30,6 +30,12 @@ bundle install
 rails db:create db:migrate
 ```
 
+- Seed the DB
+
+```
+ rails db:seed
+```
+
 - run the rails server
 
 ```
@@ -38,19 +44,19 @@ rails s
 
 ### Automated Tests
 
-- Code coverage on this application is currently at 95% (using SimpleCov ).
+- Code coverage on this application is currently at 97% (using SimpleCov ).
 - To run tests, simply run
 
 ```
  bundle exec rspec
 ```
 
-### Planned Features
+### Planned Features/improvements
 
-- Improve test coverage to at least 97%
+- CI/CD with TravisCI
+- Use FactoryBot for Seeding
 - Implement social-auth for faster sign-ups and sign-in
 - Dockerize application
-- Deploy using AWS Elastic Beanstalk
 
 ### Endpoints
 

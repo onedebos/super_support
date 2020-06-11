@@ -58,7 +58,7 @@ class Api::V1::UsersController < ApplicationController
         email: @user.email,
         role: @user.role
       }
-      render json: { token:@token, user: payload }
+      render json: { token: @token, user: payload }
     else
       render json: { error: 'token expired or invalid.' }
     end
