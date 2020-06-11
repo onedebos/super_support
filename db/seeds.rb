@@ -163,27 +163,27 @@ comments = [
 
 ]
 
-# users.each do |user|
-#     User.create!(
-#         id: user[:id],
-#         name: user[:name],
-#         email: user[:email],
-#         password: user[:password],
-#         password_confirmation: user[:password_confirmation],
-#         role: user[:role]
+users.each do |user|
+    User.create!(
+        id: user[:id],
+        name: user[:name],
+        email: user[:email],
+        password: user[:password],
+        password_confirmation: user[:password_confirmation],
+        role: user[:role]
 
-#     )
-# end
+    )
+end
 
-# tickets.each do |ticket|
-#     Ticket.create!(
-#         id: ticket[:id],
-#         user_id: ticket[:user_id],
-#         title: ticket[:title],
-#         status: ticket[:status],
-#         request: ticket[:request],
-#     )
-# end
+tickets.each do |ticket|
+    Ticket.create!(
+        id: ticket[:id],
+        user_id: ticket[:user_id],
+        title: ticket[:title],
+        status: ticket[:status],
+        request: ticket[:request],
+    )
+end
 
 comments.each do |comment|
   Comment.create!(
