@@ -16,7 +16,7 @@ To get a local copy up and running follow these simple example steps.
 
 - Ensure you have ruby 2.5.1 and Rails 6 installed on your achine
 
-- Ensure you have MySQL installed on your machine. Update the `config/database.yml` file to use your MySQL user DB credentials.
+- Ensure you have MySQL installed on your machine. Update the `config/database.yml` file to use YOUR MySQL user DB credentials.
 
 - Run bundle to install the required gems
 

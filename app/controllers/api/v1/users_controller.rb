@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::UsersController < ApplicationController
-  before_action :authenticate, only: [:update, :user_with_token, :user_tickets]
+  before_action :authenticate, only: %i[update user_with_token user_tickets]
 
   def index
     users = User.all.order(created_at: :desc)
@@ -52,18 +52,18 @@ class Api::V1::UsersController < ApplicationController
 
   def user_with_token
     if @user
-      render json: {user: @user}
+      render json: { user: @user }
     else
-      render json: {error: "token expired or invalid."}
+      render json: { error: 'token expired or invalid.' }
     end
   end
 
   def user_tickets
     if @user
       tickets = @user.tickets
-      render json: {tickets: tickets, user_id: @user.id}
+      render json: { tickets: tickets, user_id: @user.id }
     else
-      render json: {error: "invalid token"}
+      render json: { error: 'invalid token' }
     end
   end
 

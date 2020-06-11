@@ -18,6 +18,14 @@ RSpec.describe User, type: :model do
     it "check that a user's role is a customer when first created" do
       expect(user.role).to eq('customer')
     end
+
+    it 'checks that a user can create multiple tickets' do
+      ticket = Ticket.create!(title: 'test ticket', request: 'new request', user_id: user.id)
+      ticket1 = Ticket.create!(title: 'test ticket', request: 'new request', user_id: user.id)
+      ticket2 = Ticket.create!(title: 'test ticket', request: 'new request', user_id: user.id)
+      ticket3 = Ticket.create!(title: 'test ticket', request: 'new request', user_id: user.id)
+      expect(user.tickets.length).to eq(4)
+    end
   end
 
   describe '# when created user is not valid' do

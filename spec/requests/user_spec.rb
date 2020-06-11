@@ -70,5 +70,60 @@ RSpec.describe 'Users', type: :request do
 
       expect(response).to have_http_status(200)
     end
+
+    it 'shows all user tickets' do
+      # create a user
+      params = { name: 'test_user', email: 'test@test.com', password: 'password', password_confirmation: 'password' }
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      post '/api/v1/users', params: params.to_json, headers: headers
+      user1 = JSON.parse(response.body)
+
+      # create a second user
+      params = { name: 'test_user', email: 'test2@test.com', password: 'password', password_confirmation: 'password' }
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      post '/api/v1/users', params: params.to_json, headers: headers
+      user2 = JSON.parse(response.body)
+
+      # create a tickets for user1
+      ticket_params = { user_id: user1['user']['user_id'], title: 'test ticket', request: 'test request' }
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user1['token']}" }
+      post '/api/v1/tickets', params: ticket_params.to_json, headers: headers
+
+      ticket_params = { user_id: user1['user']['user_id'], title: 'test ticket', request: 'test request' }
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user1['token']}" }
+      post '/api/v1/tickets', params: ticket_params.to_json, headers: headers
+
+      # create 2 tickets for user2
+      ticket_params = { user_id: user2['user']['user_id'], title: 'test ticket', request: 'test request' }
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user2['token']}" }
+      post '/api/v1/tickets', params: ticket_params.to_json, headers: headers
+
+      ticket_params = { user_id: user2['user']['user_id'], title: 'test ticket', request: 'test request' }
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user2['token']}" }
+      post '/api/v1/tickets', params: ticket_params.to_json, headers: headers
+      ticket2 = JSON.parse(response.body)
+
+      # access user2 tickets using user_tickets route with token
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user2['token']}" }
+      get '/api/v1/usertickets', headers: headers
+      tickets = JSON.parse(response.body)
+      expect(tickets['tickets'].length).to eq(2)
+      expect(tickets['tickets'][0]['user_id']).to eq(user2['user']['user_id'])
+      expect(tickets['tickets'][1]['user_id']).to eq(user2['user']['user_id'])
+    end
+
+    it 'finds a user based on a given token' do
+      # create a user
+      params = { name: 'test_user', email: 'test@test.com', password: 'password', password_confirmation: 'password' }
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      post '/api/v1/users', params: params.to_json, headers: headers
+      user1 = JSON.parse(response.body)
+
+      # send the token to authenticate the user
+      headers = { 'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': "Bearer #{user1['token']}" }
+      get '/api/v1/verifyuser', headers: headers
+      user = JSON.parse(response.body)
+      expect(user['user']['id']).to eq(user1['user']['user_id'])
+    end
   end
 end
