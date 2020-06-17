@@ -1,0 +1,62 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users":
+    get:
+      summary: gets all users
+      tags:
+      - Users
+      responses:
+        '200':
+          description: users found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  email:
+                    type: string
+    post:
+      summary: signs up a user
+      tags:
+      - Users
+      description: Creates a new user with name, username and password
+      parameters: []
+      responses:
+        '201':
+          description: user created
+          content: {}
+        '422':
+          description: invalid request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+              required:
+              - name
+              - email
+              - password
+              - password_confirmation
+servers:
+- url: http://localhost:3000
+  variables:
+    defaultHost:
+      default: localhost

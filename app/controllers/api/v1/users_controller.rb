@@ -31,6 +31,8 @@ class Api::V1::UsersController < ApplicationController
         token: token,
         user: payload
       }, status: 201
+    else
+      render status: 422
     end
   end
 
