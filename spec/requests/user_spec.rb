@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'swagger_helper'
 
 RSpec.describe 'Users', type: :request do
   describe '# successful signups' do
+    path '/api/v1/users'
     params = { name: 'test_user', email: 'test@test.com', password: 'password', password_confirmation: 'password' }
     headers = { 'Accept': 'application/json', 'Content-Type': 'application/json' }
     it 'signs up a user and send back a response if the inputs are valid' do
