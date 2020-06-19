@@ -9,6 +9,7 @@ class Api::V1::CommentsController < ApplicationController
       user_id: @user.id,
       user_name: @user.name,
       ticket_id: @ticket.id,
+      user_role: @user.role,
       comment: params[:comment]
     )
 

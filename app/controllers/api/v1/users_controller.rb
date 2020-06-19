@@ -1,7 +1,14 @@
 # frozen_string_literal: true
 
 class Api::V1::UsersController < ApplicationController
-  before_action :authenticate, only: [:update]
+  before_action :authenticate, only: %i[update user_with_token user_tickets]
+
+  def index
+    users = User.all.order(created_at: :desc)
+    render json: {
+      users: users
+    }
+  end
 
   def create
     user = User.create!(
@@ -24,6 +31,8 @@ class Api::V1::UsersController < ApplicationController
         token: token,
         user: payload
       }, status: 201
+    else
+      render status: 422
     end
   end
 
@@ -40,6 +49,29 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: { error: 'You are not authorized to perform that action. ' },
              status: 401
+    end
+  end
+
+  def user_with_token
+    if @user
+      payload = {
+        user_id: @user.id,
+        name: @user.name,
+        email: @user.email,
+        role: @user.role
+      }
+      render json: { token: @token, user: payload }
+    else
+      render json: { error: 'token expired or invalid.' }
+    end
+  end
+
+  def user_tickets
+    if @user
+      tickets = @user.tickets
+      render json: { tickets: tickets, user_id: @user.id }
+    else
+      render json: { error: 'invalid token' }
     end
   end
 

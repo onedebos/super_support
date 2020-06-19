@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Authentication', type: :request do
-  describe 'login tests' do
+  describe '# login tests' do
     it 'tests that a user with valid credential can login' do
       # create a user
       params = { name: 'test_user', email: 'test@test.com', password: 'password', password_confirmation: 'password' }
