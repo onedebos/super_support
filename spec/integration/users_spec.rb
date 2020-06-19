@@ -35,7 +35,16 @@ describe 'Users API' do
               
 
               response '201', 'user created' do
-                let(:user) {{name: 'user1', email: 'user1@gmail.com', password: 'password', password_confirmation: 'password'}}
+                # let(:user) {{name: 'user1', email: 'user1@gmail.com', password: 'password', password_confirmation: 'password'}}
+                
+
+                examples 'application/json' =>{
+                    id: 1,
+                    name: "user1",
+                    email: "user1@email.com",
+                    token: "exxxxxxxx" 
+                }
+                
                 run_test!
               end
 
