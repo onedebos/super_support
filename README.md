@@ -56,7 +56,6 @@ rails s
 ### Planned Features/improvements
 
 - CI/CD with TravisCI
-- Use FactoryBot for Seeding
 - Implement social-auth for faster sign-ups and sign-in
 - Dockerize application
 
