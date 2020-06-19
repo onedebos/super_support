@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/onedebos/super_support/branch/travis/graph/badge.svg?token=NC0GOPP78V)](https://codecov.io/gh/onedebos/super_support)
+
 # SuperSupport API
 
 This is a customer support application that allows for 3 user roles: Admin, Agents and Customers. Admins can make other users Admins and can see all tickets created on the system. Agents can change the status of a ticket and can leave comments on tickets. Customers cannot comment on a ticket till an Agent or Admin has commented on it.
