@@ -1,4 +1,6 @@
 require 'faker'
+
+User.destroy_all
 # generate 20 users
 (1..20).each do |id|
     User.create!(

@@ -2,8 +2,8 @@
 
 class User < ApplicationRecord
   has_secure_password
-  has_many :comments
-  has_many :tickets
+  has_many :comments, dependent: :destroy
+  has_many :tickets, dependent: :destroy
 
   enum role: %i[customer agent admin]
 
